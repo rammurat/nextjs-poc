@@ -8,8 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "10.0.0",
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "cors": "^2.8.5",
+    "isomorphic-unfetch": "^3.1.0",
+    "mongodb": "^3.6.3",
+    "next": "^10.0.0",
+    "next-connect": "^0.9.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "sass": "^1.27.0"
   }
 }

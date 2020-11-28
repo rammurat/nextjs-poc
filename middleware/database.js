@@ -1,7 +1,8 @@
 import { MongoClient } from 'mongodb';
 import nextConnect from 'next-connect';
+import {serverRuntimeConfig} from '../next.config'
 
-const client = new MongoClient('mongodb://localhost:27017/admin?readPreference=primary&appname=MongoDB%20Compass&ssl=false', {
+const client = new MongoClient(serverRuntimeConfig.databaseUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

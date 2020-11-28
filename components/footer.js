@@ -1,5 +1,5 @@
 function Footer() {
-    return <footer class="container">
+    return <footer className="container">
         <p>&copy; Company 2017-2020</p>
    </footer>
 }

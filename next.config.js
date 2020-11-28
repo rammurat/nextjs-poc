@@ -4,6 +4,9 @@ module.exports = {
       iconSizes: [],
       domains: [],
       path: '/_next/image',
-      loader: 'default',
+      loader: 'default'
     },
+    serverRuntimeConfig: {
+      databaseUrl: process.env.DATABASE_URL || 'mongodb://localhost:27017/admin?readPreference=primary&appname=MongoDB%20Compass&ssl=false'
+    }
   }

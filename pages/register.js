@@ -13,7 +13,6 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    e.target.reset();
 
     const data = {
       email: emailRef.current.value,
@@ -27,6 +26,7 @@ export default function Register() {
     // reset form if user added 
     if(result.data.user._id) {
       setMessage(result.data.message)
+      e.target.reset();
     }
   };
 

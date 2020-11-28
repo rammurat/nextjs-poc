@@ -1,6 +1,6 @@
 import { hash } from 'argon2';
 import nextConnect from 'next-connect';
-import middleware from '../../middleware/database';
+import {middleware} from '../../middleware/database';
 
 const handler = nextConnect();
 handler.use(middleware);

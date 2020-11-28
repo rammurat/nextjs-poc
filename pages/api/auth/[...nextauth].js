@@ -1,11 +1,11 @@
 import { verify } from 'argon2';
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
-// import middleware from '../../../middleware/database';
-// import nextConnect from 'next-connect';
+import {middleware, db} from '../../../middleware/database';
+import nextConnect from 'next-connect';
 
-// const handler = nextConnect();
-// handler.use(middleware);
+const handler = nextConnect();
+handler.use(middleware);
 
 const options = {
   pages: {
@@ -30,12 +30,10 @@ const options = {
         password: {  label: "Password", type: "password" }
       },
       authorize: async (credentials) => {
-        console.log('=================>>>>>>>>>>>>>>', credentials)
         // Add logic here to look up the user from the credentials supplied
-        // const user = await credentials.db.collection('user').findOne({email: credentials.email})
-        const user = {email: 'rammurat', password: 'idea123', name: 'Ram Murat Sharma'}
-        
-        if (user && user.password === 'idea123') {
+        const user = await db.collection('users').findOne({email: credentials.email})
+       
+        if (user && verify(user.password, credentials.password)) {
           // Any object returned will be saved in `user` property of the JWT
           return Promise.resolve(user)
         } else {
@@ -50,4 +48,9 @@ const options = {
   database: process.env.DATABASE_URL,
 }
 
-export default (req, res) => NextAuth(req, res, options)
+// export default (req, res) => NextAuth(req, res, options)
+
+handler.get(async (req, res) => NextAuth(req, res, options))
+handler.post(async (req, res) => NextAuth(req, res, options))
+
+export default handler

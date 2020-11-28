@@ -1,14 +1,20 @@
 import Head from 'next/head';
 import { useRef } from 'react';
 import axios from 'redaxios';
+import {useState} from 'react'
 
 export default function Register() {
+  const [message, setMessage] = useState('');
+
   const emailRef = useRef();
   const passRef = useRef();
   const nameRef = useRef();
 
 
-  const doRegister = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    e.target.reset();
+
     const data = {
       email: emailRef.current.value,
       password: passRef.current.value,
@@ -17,28 +23,40 @@ export default function Register() {
 
     const result = await axios.post('/api/register', data);
     console.log(result);
+
+    // reset form if user added 
+    if(result.data.user._id) {
+      setMessage(result.data.message)
+    }
   };
 
   return (
     <div className="">
       <Head>
-        <title>Task Manager - Register</title>
+        <title>Register</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="p-2">
         <h1 className="font-bold">Register!</h1>
-        <div>
-          <input type="text" placeholder="name" ref={nameRef} />
-        </div>
-        <div>
-          <input type="text" placeholder="email" ref={emailRef} />
-        </div>
-        <div>
-          <input type="password" placeholder="Password" ref={passRef} />
-        </div>
+        {message && 
+          <div className="alert alert-success" role="alert">
+            {message}
+          </div>
+        }
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input type="text" placeholder="name" ref={nameRef} />
+          </div>
+          <div>
+            <input type="text" placeholder="email" ref={emailRef} />
+          </div>
+          <div>
+            <input type="password" placeholder="Password" ref={passRef} />
+          </div>
 
-        <button onClick={doRegister}>Register</button>
+          <input type="submit" value="Register" />
+        </form>
       </main>
     </div>
   );

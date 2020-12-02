@@ -1,5 +1,6 @@
 import { csrfToken } from 'next-auth/client';
 import Head from 'next/head';
+import style from '../styles/Login.module.css'
 
 export default function Login({ csrfToken }) {
   return (
@@ -9,20 +10,20 @@ export default function Login({ csrfToken }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="p-2">
-        <h1 className="font-bold">Login!</h1>
-
-        <form method="post" action="/api/auth/callback/credentials">
+      <main className="p-2 text-center">
+        <form className={style.formSignin} method="post" action="/api/auth/callback/credentials">
           <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-          <label>
-            Email
-            <input name="email" type="text" />
-          </label>
-          <label>
-            Password
-            <input name="password" type="text" />
-          </label>
-          <button type="submit">Sign in</button>
+          <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+          <label htmlFor="inputEmail" className="sr-only">Email address</label>
+          <input type="email" name="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>
+          <label htmlFor="inputPassword" className="sr-only">Password</label>
+          <input type="password" name="password" id="inputPassword" className="form-control" placeholder="Password" required/>
+          <div className="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"/> Remember me
+            </label>
+          </div>
+          <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
       </main>
     </div>

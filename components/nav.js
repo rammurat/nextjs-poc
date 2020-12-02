@@ -1,6 +1,10 @@
+import { signIn, signOut, useSession } from 'next-auth/client'
+
 function Nav() {
+  const [ session, loading ] = useSession()  
+
     return <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a className="navbar-brand" href="#">Debs</a>
+    <a className="navbar-brand" href="/">Debs</a>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -8,22 +12,33 @@ function Nav() {
     <div className="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item active">
-          <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+          <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">About us</a>
+          <a className="nav-link" href="/static/about">About us</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Contact us</a>
+          <a className="nav-link" href="/static/contact">Contact us</a>
         </li>
 
+        {session &&
+        <li className="nav-item">
+          <a className="nav-link" href="/my-account">My account</a>
+        </li>
+        }
+
         <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div className="dropdown-menu" aria-labelledby="dropdown01">
-            <a className="dropdown-item" href="#">Action</a>
-            <a className="dropdown-item" href="#">Another action</a>
-            <a className="dropdown-item" href="#">Something else here</a>
-          </div>
+          {!session ?
+            <a className="nav-link" href={`/api/auth/signin`}  onClick={(e) => {
+                  e.preventDefault()
+                  signIn()
+                }}>Sign in</a>
+          :
+            <a className="nav-link"  href={`/api/auth/signout`} onClick={(e) => {
+                  e.preventDefault()
+                  signOut()
+                }}><span>{session.user.name}</span> (Sign out)</a>
+          }
         </li>
       </ul>
       <form className="form-inline my-2 my-lg-0">

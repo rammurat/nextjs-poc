@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import fetch from 'isomorphic-unfetch'
+import Image from 'next/image'
 function PDP({data}) {
   return (
     <div className="container-fluid">
@@ -10,12 +11,12 @@ function PDP({data}) {
                         <div className="col-md-2">
                             <ul className="pdp-thumbs">
                                 {data.images.thumbs.map((s, i) => (
-                                <li key={i}><img src={s} class="img-thumbnail"/></li>
+                                <li key={i}><img src={s} className="img-thumbnail"/></li>
                                 ))}
                             </ul>
                         </div>
                         <div className="col-md-5">
-                        <img class="img-thumbnail" src={data.images.url} alt="my image" />
+                        <img className="img-thumbnail" src={data.images.url} alt="my image" />
                         </div>
                         <div className="col-md-5">
                             <h3>{data.name}</h3>
@@ -36,25 +37,55 @@ function PDP({data}) {
 
                     <p>
                         Shop more... {data.tags.map((s, i) => (
-                            <span key={i} class="badge badge-info">{s.name}</span>
+                            <span key={i} className="badge badge-info">{s.name}</span>
                         ))}
                     </p>
                     <p>{data.description}</p>
                     <hr/>
 
-                    <h2>Delivery options</h2>
+                    <h3>Delivery options</h3>
+                    <br/>
                     <div className="container">
                         <div className="row">
                             <div className="col-md-4">
-                                
-                                <div class="media">
-                                <svg class="bi bi-chevron-right" width="32" height="32" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6.646 3.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L12.293 10 6.646 4.354a.5.5 0 010-.708z"/></svg>
-                                    <div class="media-body">
-                                        <h5 class="mt-0">{data.delivery_options[0].standard.name}</h5>
-                                        <p>{data.delivery_options[0].standard.options.map((s, i) => (
-                                            <div><span key={i}>{s.name}</span>
-                                            <span key={i}>{s.price}</span></div>
-                                        ))}</p>
+                                <div className="media">
+                                    <div className="media-body">
+                                        <h6 className="mt-0">{data.delivery_options[0].standard.name}</h6>
+                                        <div>{data.delivery_options[0].standard.options.map((s, i) => (
+                                            <p key={s.name}>
+                                                <span className="delivery-option-icon"><Image src="/icon-tick.svg" alt="me" width="16" height="16" /></span>
+                                                <span className="delivery-option-name" >{s.name}</span>
+                                                <span className="delivery-option-price">£{s.price}</span>
+                                            </p>
+                                        ))}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="media">
+                                    <div className="media-body">
+                                        <h6 className="mt-0">{data.delivery_options[1].click_collect.name}</h6>
+                                        <div>{data.delivery_options[1].click_collect.options.map((s, i) => (
+                                            <p key={s.name}>
+                                                <span className="delivery-option-icon"><Image src="/icon-tick.svg" alt="me" width="16" height="16" /></span>
+                                                <span  className="delivery-option-name" >{s.name}</span>
+                                                <span className="delivery-option-price" >{s.price}</span>
+                                            </p>
+                                        ))}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="media">
+                                    <div className="media-body">
+                                        <h6 className="mt-0">{data.delivery_options[2].international.name}</h6>
+                                        <div>{data.delivery_options[2].international.options.map((s, i) => (
+                                            <p  key={s.name}>
+                                                <span className="delivery-option-icon"><Image src="/icon-cross.svg" alt="me" width="16" height="16" /></span>
+                                                <span  className="delivery-option-name" >{s.name}</span>
+                                                <span  className="delivery-option-price">{s.price}</span>
+                                            </p>
+                                        ))}</div>
                                     </div>
                                 </div>
                             </div>

@@ -9,8 +9,7 @@ handler.use(middleware);
 
 const options = {
   pages: {
-    signIn: '/login',
-    signOut: '/register',
+    signIn: '/login'
   },
   session: {
     jwt: true,

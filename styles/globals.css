@@ -47,3 +47,24 @@ footer {
 .psp-main-content {
   margin: 0 auto;
 }
+
+.badge-info {
+  padding: 8px;
+  margin: 5px;
+}
+
+.pdp-thumbs {
+  list-style: none;
+}
+
+.pdp-thumbs li {
+  margin-bottom: 10px;
+}
+
+.pdp-thumbs img {
+  max-width: 120px;
+}
+
+h3 {
+  font-size: 20px !important;
+}

@@ -5,9 +5,14 @@ const handler = nextConnect();
 
 handler.use(middleware);
 
+const findDocuments = async function(collection) {
+    return collection.find({}).toArray();
+}
+
 handler.get(async (req, res) => {
-    let doc = await req.db.collection('products').findOne()
-    res.json(doc);
+    let collection = await req.db.collection('products')
+    const result = await findDocuments(collection)
+    res.json(result);
 });
 
 handler.post(async (req, res) => {

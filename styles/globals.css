@@ -35,3 +35,15 @@ a:hover {
   box-sizing: border-box;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.container-fluid {
+  margin-top: 50px;
+}
+
+.psp-main-content {
+  margin: 0 auto;
+}

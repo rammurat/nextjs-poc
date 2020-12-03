@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 import fetch from 'isomorphic-unfetch'
 function PDP({data}) {
   return (

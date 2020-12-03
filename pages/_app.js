@@ -2,6 +2,10 @@ import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/globals.css'
 import { Provider } from 'next-auth/client'
 
+import Header from '../components/header'
+import Footer from '../components/footer'
+import Nav from '../components/nav'
+
 export default function App ({ Component, pageProps }) {
   return (
     <Provider 
@@ -24,7 +28,14 @@ export default function App ({ Component, pageProps }) {
       }}
       session={pageProps.session}
     >
+      <Header />
+
+      <Nav />
+
       <Component {...pageProps} />
+
+      <Footer />
+
     </Provider>
   )
 }

@@ -1,29 +1,33 @@
-import styles from '../styles/Home.module.css'
 import fetch from 'isomorphic-unfetch'
+
 function PSP({data}) {
   return (
-    <div >
-      <main >
-        <h1 >
-          Products
-        </h1>
+    <div className="container-fluid">
+      <div className="row flex-xl-nowrap">
+        <main role="main" className="psp-main-content col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+          <h1 >
+            Products
+          </h1>
 
-    
-        <div >
-          <a href="#" >
-            {/* <img src={data.images.url} alt="my image" /> */}
-            <h3>{data.name}</h3>
-            <p>Now £{data.price[0].gbp}</p>
-            <p>Sizes <select>
-                {data.sizes.map((s, i) => (
-                  <option key={i}>{s}</option>
-                ))}
-              </select>
-            </p>
-          </a>
-         
-        </div>
-      </main>
+          <div className="card-deck">      
+            {data.map((item, i) => (
+                <div className="card" key={i}>
+                  <img src={item.images.url} className="card-img-top" alt="..."/>
+                  <div className="card-body">
+                    <h5 className="card-title">{item.name}</h5>
+                    <p>Sizes <select>
+                      {item.sizes.map((s, i) => (
+                        <option key={i}>{s}</option>
+                      ))}
+                    </select>
+                    </p>
+                    <p className="card-text"><small className="text-muted">Now £{item.price[0].gbp}</small></p>
+                  </div>
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
     </div>
   )
 }

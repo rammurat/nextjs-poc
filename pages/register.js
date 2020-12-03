@@ -32,7 +32,7 @@ export default function Register() {
   };
 
   return (
-    <div className="">
+    <div className="container-fluid">
       <Head>
         <title>Register</title>
         <link rel="icon" href="/favicon.ico" />

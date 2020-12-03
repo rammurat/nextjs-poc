@@ -33,16 +33,37 @@ const options = {
         // Add logic here to look up the user from the credentials supplied
         const user = await db.collection('users').findOne({email: credentials.email})
        
-        if (user && verify(user.password, credentials.password)) {
+        if (user && await verify(user.password, credentials.password)) {
           // Any object returned will be saved in `user` property of the JWT
           return Promise.resolve(user)
         } else {
-          return null
+          return Promise.resolve(null)
         }
       }
     })
     // ...add more providers here
   ],
+  callbacks: {
+    /**
+     * @param  {object} user     User object
+     * @param  {object} account  Provider account
+     * @param  {object} profile  Provider profile 
+     * @return {boolean}         Return `true` (or a modified JWT) to allow sign in
+     *                           Return `false` to deny access
+     */
+    signIn: async (user, account, profile) => {
+      const isAllowedToSignIn = true
+      if (isAllowedToSignIn) {
+        return Promise.resolve(true)
+      } else {
+        // Return false to display a default error message
+        return Promise.resolve(false)
+        // You can also Reject this callback with an Error or with a URL:
+        // return Promise.reject(new Error('error message')) // Redirect to error page
+        // return Promise.reject('/path/to/redirect')        // Redirect to a URL
+      }
+    }
+  },
 
   // A database is optional, but required to persist accounts in a database
   database: process.env.DATABASE_URL,

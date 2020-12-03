@@ -2,7 +2,8 @@ import { csrfToken } from 'next-auth/client';
 import Head from 'next/head';
 import style from '../styles/Login.module.css'
 
-export default function Login({ csrfToken }) {
+export default function Login({ query, csrfToken }) {
+  const error = query.error === 'CredentialsSignin' || false
   return (
     <div className="">
       <Head>
@@ -11,7 +12,12 @@ export default function Login({ csrfToken }) {
       </Head>
 
       <main className="p-2 text-center">
+        
         <form className={style.formSignin} method="post" action="/api/auth/callback/credentials">
+          {error && 
+          <div className="alert alert-danger" role="alert">
+            Invalid user or password
+          </div> }
           <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
           <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
           <label htmlFor="inputEmail" className="sr-only">Email address</label>
@@ -32,6 +38,7 @@ export default function Login({ csrfToken }) {
 
 Login.getInitialProps = async (context) => {
   return {
+    query: context.query,
     csrfToken: await csrfToken(context),
   };
 };

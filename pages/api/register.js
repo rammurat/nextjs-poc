@@ -19,8 +19,6 @@ handler.post(async (req, res) => {
         password: hashedPassword
      }
     let doc = await req.db.collection('users').insertOne(data)
-
-    console.log(data)
     res.status(200).json({ message: 'User added', user: doc.ops ? doc.ops[0] : {} });
   } catch (error) {
     res.status(400).json({ message: 'Entry failed due to server/database error', error });

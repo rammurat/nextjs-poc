@@ -21,9 +21,11 @@ function Nav() {
           <a className="nav-link" href="/static/contact">Contact us</a>
         </li>
 
-        {session &&
+        {session ?
         <li className="nav-item">
           <a className="nav-link" href="/my-account">My account</a>
+        </li> : <li className="nav-item">
+          <a className="nav-link" href="/register">Register</a>
         </li>
         }
 

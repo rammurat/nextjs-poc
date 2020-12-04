@@ -85,3 +85,7 @@ svg {
   height: 20px;
   width: 20px;
 }
+
+.card-deck a {
+  display: contents;
+}

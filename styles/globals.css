@@ -89,3 +89,17 @@ svg {
 .card-deck a {
   display: contents;
 }
+
+nav {    
+  display: block;
+  text-align: center;
+}
+
+nav ul {
+  margin: 0;
+  padding:0;
+  list-style: none;
+}
+
+
+

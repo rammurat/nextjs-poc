@@ -1,5 +1,7 @@
 import { signIn, signOut, useSession } from 'next-auth/client'
 
+import '../styles/Nav.module.css'
+
 function Nav() {
   const [ session, loading ] = useSession()  
 

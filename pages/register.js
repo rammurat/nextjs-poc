@@ -4,7 +4,7 @@ import axios from 'redaxios';
 import {useState} from 'react'
 import style from '../styles/Login.module.css'
 import { csrfToken } from 'next-auth/client';
-
+import Layout from '../components/layout'
 export default function Register() {
   const [message, setMessage] = useState('');
 
@@ -32,7 +32,7 @@ export default function Register() {
   };
 
   return (
-    <div className="container-fluid">
+    <Layout>
       <Head>
         <title>Register</title>
         <link rel="icon" href="/favicon.ico" />
@@ -61,7 +61,7 @@ export default function Register() {
           <button className="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </form>
       </main>
-    </div>
+    </Layout>
   );
 }
 

@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import fetch from 'isomorphic-unfetch'
 import Image from 'next/image'
+import Layout from '../../components/layout'
 function PDP({data}) {
   return (
-    <div className="container-fluid">
+    <Layout>
         <div className="row flex-xl-nowrap">
             <main role="main" className="psp-main-content col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
                 <div className="container">
@@ -95,7 +96,7 @@ function PDP({data}) {
                 </div>
             </main>
         </div>
-    </div>
+    </Layout>
   )
 }
 

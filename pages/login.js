@@ -1,11 +1,12 @@
 import { csrfToken } from 'next-auth/client';
 import Head from 'next/head';
 import style from '../styles/Login.module.css'
+import Layout from '../components/layout'
 
 export default function Login({ query, csrfToken }) {
   const error = query.error === 'CredentialsSignin' || false
   return (
-    <div className="container-fluid">
+    <Layout>
       <Head>
         <title>Login</title>
         <link rel="icon" href="/favicon.ico" />
@@ -31,7 +32,7 @@ export default function Login({ query, csrfToken }) {
           <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
       </main>
-    </div>
+      </Layout>
   );
 }
 

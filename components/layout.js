@@ -6,7 +6,7 @@ import Nav from '../components/nav'
 function Layout({children, data}) {
   
   return (
-   <div>
+    <div className="container-fluid">
       <Header/>
 
       <Nav data={data}/>
@@ -14,7 +14,7 @@ function Layout({children, data}) {
       {children}
 
       <Footer/>
-      </div>
+    </div>
   )
 }
 

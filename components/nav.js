@@ -57,7 +57,7 @@ function Nav({data}) {
 
     <nav className="container-fluid">
       <ul className="nav justify-content-center">
-        {data.map((item, i) => (
+        {data && data.map((item, i) => (
           <li key={i} className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{item.name}</a>
             <div className="dropdown-menu">

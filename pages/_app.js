@@ -2,10 +2,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/globals.css'
 import { Provider } from 'next-auth/client'
 
-import Header from '../components/header'
-import Footer from '../components/footer'
-import Nav from '../components/nav'
-
 export default function App ({ Component, pageProps }) {
   return (
     <Provider 
@@ -28,52 +24,7 @@ export default function App ({ Component, pageProps }) {
       }}
       session={pageProps.session}
     >
-      <Header />
-
-      <Nav />
-     
-      {/* <ul className="nav">
-        <li><a href="#">About</a></li>
-        <li><a href="#">Portfolio</a>
-          <ul>
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Resume</a>
-          <ul>
-            <li><a href="#">item a lonng submenu</a></li>
-            <li><a href="#">item</a>
-              <ul>
-                <li><a href="#">Ray</a></li>
-                <li><a href="#">Veronica</a></li>
-                <li><a href="#">Bushy</a></li>
-                <li><a href="#">Havoc</a></li>
-              </ul>
-            </li>
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Download</a></li>
-        <li><a href="#">Rants</a>
-          <ul>
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Contact</a></li>
-      </ul> */}
-     
-
-      <Component {...pageProps} />
-
-      <Footer />
-
+        <Component {...pageProps} />
     </Provider>
   )
 }

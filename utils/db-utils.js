@@ -6,4 +6,14 @@ const findDocuments = async function(collection) {
     return collection.find({}).toArray();
 }
 
-export {findDocument, findDocuments}
+const aggregate = async function(collection) {
+    const _lookup = {
+        from: 'sub-categories',
+        localField: 'id',
+        foreignField: 'cat_id',
+        as: 'sub_cats'
+    }
+    return collection.aggregate( [ { $lookup : _lookup } ]).toArray();
+}
+
+export {findDocument, findDocuments, aggregate}

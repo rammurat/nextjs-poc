@@ -1,19 +1,19 @@
 import styles from '../styles/Home.module.css'
+import Layout from '../components/layout'
 
-function Home() {
-
+function Home({data}) {
   return (
     <div className="container-fluid">
       <main role="main">
-        <div>
-          <div className="jumbotron">
+        <Layout data={data}>
+
+        <div className="jumbotron">
               <div className="container">
               <h1 className="display-3">Welcome to Debs</h1>
               <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
               <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
               </div>
           </div>
-
           <div className="container">
               <div className="row">
               <div className="col-md-4">
@@ -34,13 +34,20 @@ function Home() {
               </div>
               <hr/>
           </div>
-        </div>
+        </Layout>
       </main>
-
-     
     </div>
   )
 }
 
+// // This gets called on every request
+export async function getStaticProps() {
+  // Fetch data from external API
+  const res = await fetch(`http://localhost:3000/api/nav`)
+  const data = await res.json()
+
+  // Pass data to the page via props
+  return { props: { data } }
+}
 
 export default Home

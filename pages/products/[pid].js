@@ -1,10 +1,13 @@
-import Head from 'next/head'
+
 import fetch from 'isomorphic-unfetch'
 import Image from 'next/image'
+
+import {getNavMenuData} from '../../services/apis'
 import Layout from '../../components/layout'
-function PDP({data}) {
+
+function PDP({data, nav}) {
   return (
-    <Layout>
+    <Layout {...nav}>
         <div className="row flex-xl-nowrap">
             <main role="main" className="psp-main-content col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
                 <div className="container">
@@ -102,7 +105,6 @@ function PDP({data}) {
 
 // This gets called on every request
 export async function getServerSideProps(context) {
-   
     const {
         query: { pid },
       } = context
@@ -110,9 +112,10 @@ export async function getServerSideProps(context) {
     // Fetch data from external API
     const res = await fetch(`http://localhost:3000/api/products/${pid}`)
     const data = await res.json()
+    const nav = await getNavMenuData()
   
     // Pass data to the page via props
-    return { props: { data } }
+    return { props: { data, nav } }
 }
 
 export default PDP

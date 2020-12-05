@@ -5,7 +5,6 @@ import '../styles/Nav.module.css'
 
 function Nav({data}) {
   const [ session, loading ] = useSession()  
- 
     return <div>
     <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <a className="navbar-brand" href="/">Debs</a>

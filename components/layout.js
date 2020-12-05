@@ -3,13 +3,12 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import Nav from '../components/nav'
 
-function Layout({children, data}) {
-  
+function Layout({children, nav}) {
   return (
     <div className="container-fluid">
       <Header/>
 
-      <Nav data={data}/>
+      <Nav {...nav}/>
 
       {children}
 

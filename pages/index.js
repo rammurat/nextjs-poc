@@ -1,11 +1,13 @@
 import styles from '../styles/Home.module.css'
 import Layout from '../components/layout'
 
-function Home({data}) {
+import {getNavMenuData} from '../services/apis'
+
+function Home({nav}) {
   return (
     <div className="container-fluid">
       <main role="main">
-        <Layout data={data}>
+        <Layout {...nav}>
 
         <div className="jumbotron">
               <div className="container">
@@ -42,12 +44,10 @@ function Home({data}) {
 
 // // This gets called on every request
 export async function getStaticProps() {
-  // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/nav`)
-  const data = await res.json()
+  const nav = await getNavMenuData()
 
   // Pass data to the page via props
-  return { props: { data } }
+  return { props: { nav } }
 }
 
 export default Home

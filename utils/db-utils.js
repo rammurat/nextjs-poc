@@ -1,12 +1,12 @@
-const findDocument = async function(collection, pid) {
-    return collection.findOne({id: parseInt(pid)});
+const findDocument = async function(collection, query) {
+    return collection.findOne(query);
 }
 
 const findDocuments = async function(collection) {
     return collection.find({}).toArray();
 }
 
-const aggregate = async function(collection) {
+const aggregateLookup = async function(collection) {
     const _lookup = {
         from: 'sub-categories',
         localField: 'id',
@@ -16,4 +16,8 @@ const aggregate = async function(collection) {
     return collection.aggregate( [ { $lookup : _lookup } ]).toArray();
 }
 
-export {findDocument, findDocuments, aggregate}
+const findDocumentsWhere = async function(collection, query) {
+    return collection.find(query).toArray();
+}
+
+export {findDocument, findDocuments, aggregateLookup, findDocumentsWhere}

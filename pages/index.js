@@ -5,10 +5,8 @@ import {getNavMenuData} from '../services/apis'
 
 function Home({nav}) {
   return (
-    <div className="container-fluid">
+    <Layout {...nav}>
       <main role="main">
-        <Layout {...nav}>
-
         <div className="jumbotron">
               <div className="container">
               <h1 className="display-3">Welcome to Debs</h1>
@@ -36,9 +34,8 @@ function Home({nav}) {
               </div>
               <hr/>
           </div>
-        </Layout>
       </main>
-    </div>
+    </Layout>
   )
 }
 

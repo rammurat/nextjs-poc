@@ -1,20 +1,28 @@
 import nextConnect from 'next-connect';
 import {middleware} from '../../../middleware/database';
-import {findDocument} from '../../../utils/db-utils'
+import {findDocumentsWhere, findDocument} from '../../../utils/db-utils'
 
 const handler = nextConnect();
 
 handler.use(middleware);
 
 handler.get(async (req, res) => {
-  const {
-    query: { pid },
-  } = req
+    const {
+      query: { pid },
+    } = req
 
-  let collection = await req.db.collection('products')
-  const result = await findDocument(collection, pid)
-  res.json(result);
+    // find sub category id to fetch the products
+    var regex = new RegExp(["^", pid, "$"].join(""), "i");
+    const query = {name: regex}
+    const collection = await req.db.collection('sub-categories')
+    const result = await findDocument(collection, query)
+
+    // find products that belongs to the search sub categories
+    const prodQuery = {sub_cat_id: result.id}
+    let prodCollection = await req.db.collection('products')
+    const prodResult = await findDocumentsWhere(prodCollection, prodQuery)
+
+    res.json(prodResult);
 });
-
 
 export default handler;

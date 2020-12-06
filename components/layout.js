@@ -8,7 +8,7 @@ function Layout({children, nav}) {
     <div className="container-fluid">
       <Header/>
 
-      <Nav {...nav}/>
+      <Nav {...nav} />
 
       {children}
 

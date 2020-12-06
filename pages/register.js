@@ -33,10 +33,6 @@ export default function Register() {
 
   return (
     <Layout>
-      <Head>
-        <title>Register</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
       <main className="p-2 text-center">
         <form onSubmit={handleSubmit} className={style.formSignin} >

@@ -7,10 +7,6 @@ export default function Login({ query, csrfToken }) {
   const error = query.error === 'CredentialsSignin' || false
   return (
     <Layout>
-      <Head>
-        <title>Login</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
       <main className="p-2 text-center">
         <form className={style.formSignin} method="post" action="/api/auth/callback/credentials">

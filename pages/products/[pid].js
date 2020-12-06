@@ -1,121 +1,56 @@
-
 import fetch from 'isomorphic-unfetch'
-import Image from 'next/image'
-
-import {getNavMenuData} from '../../services/apis'
 import Layout from '../../components/layout'
 
-function PDP({data, nav}) {
+import {getNavMenuData} from '../../services/apis'
+
+function PSP({data, nav}) {
   return (
     <Layout {...nav}>
-        <div className="row flex-xl-nowrap">
-            <main role="main" className="psp-main-content col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-2">
-                            <ul className="pdp-thumbs">
-                                {data.images.thumbs.map((s, i) => (
-                                <li key={i}><img src={s} className="img-thumbnail"/></li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className="col-md-5">
-                        <img className="img-thumbnail" src={data.images.url} alt="my image" />
-                        </div>
-                        <div className="col-md-5">
-                            <h3>{data.name}</h3>
-                            <p>Now £{data.price[0].gbp}</p>
-                            <p>Sizes <select>
-                                {data.sizes.map((s, i) => (
-                                <option key={i}>{s}</option>
-                                ))}
-                            </select>
-                            </p>
-                            <p>
-                                <button type="button" class ="btn btn-success">Add to bag</button>
-                            </p>
-                           
-                        </div>
-                    </div>
-                    <hr/>
+     ME PID
+      <div className="row flex-xl-nowrap">
+        <main role="main" className="psp-main-content col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+          <h1 >
+            Products
+          </h1>
 
-                    <p>
-                        Shop more... {data.tags.map((s, i) => (
-                            <span key={i} className="badge badge-info">{s.name}</span>
+          <div className="card-deck">      
+            {data && data.length ? data.map((item, i) => (
+                <a key={i} href={`/products/${item.id}`}>
+                  <div className="card" key={i}>
+                    <img src={item.images.url} className="card-img-top" alt="..."/>
+                    <div className="card-body">
+                      <h5 className="card-title">{item.name}</h5>
+                      <p>Sizes <select>
+                        {item.sizes.map((s, i) => (
+                          <option key={i}>{s}</option>
                         ))}
-                    </p>
-                    <p>{data.description}</p>
-                    <hr/>
-
-                    <h3>Delivery options</h3>
-                    <br/>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-4">
-                                <div className="media">
-                                    <div className="media-body">
-                                        <h6 className="mt-0">{data.delivery_options[0].standard.name}</h6>
-                                        <div>{data.delivery_options[0].standard.options.map((s, i) => (
-                                            <p key={s.name}>
-                                                <span className="delivery-option-icon"><Image src="/icon-tick.svg" alt="me" width="16" height="16" /></span>
-                                                <span className="delivery-option-name" >{s.name}</span>
-                                                <span className="delivery-option-price">£{s.price}</span>
-                                            </p>
-                                        ))}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-4">
-                                <div className="media">
-                                    <div className="media-body">
-                                        <h6 className="mt-0">{data.delivery_options[1].click_collect.name}</h6>
-                                        <div>{data.delivery_options[1].click_collect.options.map((s, i) => (
-                                            <p key={s.name}>
-                                                <span className="delivery-option-icon"><Image src="/icon-tick.svg" alt="me" width="16" height="16" /></span>
-                                                <span  className="delivery-option-name" >{s.name}</span>
-                                                <span className="delivery-option-price" >{s.price}</span>
-                                            </p>
-                                        ))}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-4">
-                                <div className="media">
-                                    <div className="media-body">
-                                        <h6 className="mt-0">{data.delivery_options[2].international.name}</h6>
-                                        <div>{data.delivery_options[2].international.options.map((s, i) => (
-                                            <p  key={s.name}>
-                                                <span className="delivery-option-icon"><Image src="/icon-cross.svg" alt="me" width="16" height="16" /></span>
-                                                <span  className="delivery-option-name" >{s.name}</span>
-                                                <span  className="delivery-option-price">{s.price}</span>
-                                            </p>
-                                        ))}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr/>
+                      </select>
+                      </p>
+                      <p className="card-text"><small className="text-muted">Now £{item.price[0].gbp}</small></p>
                     </div>
                 </div>
-            </main>
-        </div>
+              </a>
+            )) : 'No products'}
+          </div>
+        </main>
+      </div>
     </Layout>
   )
 }
 
 // This gets called on every request
 export async function getServerSideProps(context) {
-    const {
-        query: { pid },
-      } = context
-    
-    // Fetch data from external API
-    const res = await fetch(`http://localhost:3000/api/products/${pid}`)
-    const data = await res.json()
-    const nav = await getNavMenuData()
-  
-    // Pass data to the page via props
-    return { props: { data, nav } }
+  // Fetch data from external API
+  const {
+    query: { pid },
+  } = context
+
+  const res = await fetch(`http://localhost:3000/api/products/${pid}`)
+  const data = await res.json()
+  const nav = await getNavMenuData()
+
+  // Pass data to the page via props
+  return { props: { data, nav } }
 }
 
-export default PDP
+export default PSP

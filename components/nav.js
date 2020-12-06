@@ -58,10 +58,10 @@ function Nav({data}) {
       <ul className="nav justify-content-center">
         {data && data.map((item, i) => (
           <li key={i} className="nav-item dropdown">
-            <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{item.name}</a>
+            <button className="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">{item.name}</button>
             <div className="dropdown-menu">
               {item.sub_cats.map((row, j) => (
-                <a  key={j} className="dropdown-item" href="#">{row.name}</a>
+                <a  key={j} className="dropdown-item" href={`/products/${row.name.toLowerCase()}`}>{row.name}</a>
               ))}
             </div>
           </li>

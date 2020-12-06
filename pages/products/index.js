@@ -6,6 +6,7 @@ import {getNavMenuData} from '../../services/apis'
 function PSP({data, nav}) {
   return (
     <Layout {...nav}>
+    ME index
       <div className="row flex-xl-nowrap">
         <main role="main" className="psp-main-content col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
           <h1 >
@@ -13,7 +14,7 @@ function PSP({data, nav}) {
           </h1>
 
           <div className="card-deck">      
-            {data.map((item, i) => (
+            {data && data.length ? data.map((item, i) => (
                 <a key={i} href={`/products/${item.id}`}>
                   <div className="card" key={i}>
                     <img src={item.images.url} className="card-img-top" alt="..."/>
@@ -29,7 +30,7 @@ function PSP({data, nav}) {
                     </div>
                 </div>
               </a>
-            ))}
+            )) : 'No products'}
           </div>
         </main>
       </div>
@@ -40,7 +41,7 @@ function PSP({data, nav}) {
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/lingerie`)
+  const res = await fetch(`http://localhost:3000/api/products`)
   const data = await res.json()
   const nav = await getNavMenuData()
 

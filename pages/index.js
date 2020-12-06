@@ -3,36 +3,24 @@ import Layout from '../components/layout'
 
 import {getNavMenuData} from '../services/apis'
 
-function Home({nav}) {
+function Home({nav, data}) {
   return (
     <Layout {...nav}>
       <main role="main">
-        <div className="jumbotron">
-              <div className="container">
-              <h1 className="display-3">Welcome to Debs</h1>
-              <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-              <p><a className="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-              </div>
-          </div>
-          <div className="container">
-              <div className="row">
-              <div className="col-md-4">
-                  <h2>Heading</h2>
-                  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                  <p><a className="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-              </div>
-              <div className="col-md-4">
-                  <h2>Heading</h2>
-                  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                  <p><a className="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-              </div>
-              <div className="col-md-4">
-                  <h2>Heading</h2>
-                  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                  <p><a className="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-              </div>
-              </div>
-              <hr/>
+        <div className="container home-page">
+            <div className="card-group">
+            {data && data.length ? data.map((row, i) => (
+              <a href={`/products/${row.name}`}>
+                <div className="card">
+                  <img src={row.image} className="card-img-top" alt="..."/>
+                  <div className="card-body">
+                    <h5 className="card-title">{row.name}</h5>
+                  </div>
+                </div>
+              </a>
+              )) : 
+              <div class="alert alert-info text-center" role="alert">No products</div>}
+            </div>
           </div>
       </main>
     </Layout>
@@ -41,10 +29,13 @@ function Home({nav}) {
 
 // // This gets called on every request
 export async function getStaticProps() {
+  // Fetch data from external API
+  const res = await fetch(`http://localhost:3000/api/home`)
+  const data = await res.json()
   const nav = await getNavMenuData()
 
   // Pass data to the page via props
-  return { props: { nav } }
+  return { props: { data, nav } }
 }
 
 export default Home

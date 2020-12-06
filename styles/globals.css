@@ -101,5 +101,12 @@ nav ul {
   list-style: none;
 }
 
+.home-page .card-img, 
+.home-page .card-img-top{
+  max-width: 250px;
+  padding: 5px;
+}
 
-
+.home-page .card{
+  margin: 10px;
+}

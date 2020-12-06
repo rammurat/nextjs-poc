@@ -10,7 +10,7 @@ function Home({nav, data}) {
         <div className="container home-page">
             <div className="card-group">
             {data && data.length ? data.map((row, i) => (
-              <a href={`/products/${row.name}`}>
+              <a key={i} href={`/products/${row.name}`}>
                 <div className="card">
                   <img src={row.image} className="card-img-top" alt="..."/>
                   <div className="card-body">

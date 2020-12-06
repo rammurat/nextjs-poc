@@ -13,11 +13,7 @@ function Nav({data}) {
       </button>
 
       <div className="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <a className="nav-link" href="/products">All Products <span className="sr-only">(current)</span></a>
-          </li>
-          
+        <ul className="navbar-nav mr-auto">          
           <li className="nav-item">
             <a className="nav-link" href="/static/about">About us</a>
           </li>
@@ -56,6 +52,9 @@ function Nav({data}) {
 
     <nav className="container-fluid">
       <ul className="nav justify-content-center">
+        <li className="nav-item">
+          <a className="nav-link" href="/products">All Products <span className="sr-only">(current)</span></a>
+        </li>
         {data && data.map((item, i) => (
           <li key={i} className="nav-item dropdown">
             <button className="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false">{item.name}</button>

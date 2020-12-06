@@ -1,8 +1,9 @@
 import Layout from '../components/layout'
+import {getNavMenuData} from '../services/apis'
 
-function Error({ statusCode }) {
+function Error({ statusCode, nav }) {
     return (
-      <Layout>
+      <Layout {...nav}>
         <div className="card text-center m-5">
           <h5 className="card-header">Error!</h5>
           <div className="card-body">
@@ -15,9 +16,12 @@ function Error({ statusCode }) {
     )
   }
   
-  Error.getInitialProps = ({ res, err }) => {
-    const statusCode = res ? res.statusCode : err ? err.statusCode : 404
-    return { statusCode }
-  }
+Error.getInitialProps = async ({ res, err }) => {
+  // Fetch data from external API
+  const nav = await getNavMenuData()
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+
+  return { statusCode, nav }
+}
   
-  export default Error
+export default Error

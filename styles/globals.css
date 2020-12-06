@@ -110,3 +110,12 @@ nav ul {
 .home-page .card{
   margin: 10px;
 }
+
+.psp-main-content .card-group a{
+  max-width: 25%;
+  padding: 10px;
+}
+
+.psp-main-content .card-group a img {
+  padding: 10px;
+}

@@ -50,6 +50,7 @@ function Nav({data}) {
       </div>
     </nav>
 
+    {!session ?
     <nav className="container-fluid">
       <ul className="nav justify-content-center">
         <li className="nav-item">
@@ -66,7 +67,8 @@ function Nav({data}) {
           </li>
         ))}
       </ul>
-    </nav>
+    </nav> : false
+    }
   </div>
 }
 

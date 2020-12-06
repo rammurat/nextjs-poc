@@ -6,7 +6,6 @@ import {getNavMenuData} from '../../services/apis'
 function PSP({data, nav}) {
   return (
     <Layout {...nav}>
-     ME PID
       <div className="row flex-xl-nowrap">
         <main role="main" className="psp-main-content col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
           <h1 >
@@ -30,7 +29,7 @@ function PSP({data, nav}) {
                     </div>
                 </div>
               </a>
-            )) : 'No products'}
+            )) : <div class="alert alert-info text-center" role="alert">No products</div>}
           </div>
         </main>
       </div>

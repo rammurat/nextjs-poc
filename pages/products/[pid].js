@@ -25,7 +25,7 @@ function PSP({data, nav}) {
                         </div>
                     </div>
                   </a>
-              )) : <div class="alert alert-info text-center" role="alert">No products</div>}
+              )) : <div className="alert alert-info text-center" role="alert">No products</div>}
             </div>
         </main>
       </div>

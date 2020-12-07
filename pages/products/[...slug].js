@@ -98,7 +98,7 @@ function PDP({data, nav}) {
                         <hr/>
                     </div>
                 </div>
-                : <div class="alert alert-info text-center" role="alert">No product</div> }
+                : <div className="alert alert-info text-center" role="alert">No product</div> }
             </main>
         </div>
     </Layout>

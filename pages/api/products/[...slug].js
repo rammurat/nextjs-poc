@@ -30,7 +30,8 @@ handler.get(async (req, res) => {
     }
 
     res.json({message:'No products found'});
-  } catch(e) {
+  } catch(error) {
+    console.log(error)
       res.json({message:'No products found'});
   }
 

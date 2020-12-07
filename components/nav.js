@@ -44,7 +44,7 @@ function Nav({data}) {
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0" method="post" action="/api/search">
-          <input className="form-control mr-sm-2" name="search" type="text" placeholder="Search" aria-label="Search"/>
+          <input className="form-control mr-sm-2" name="text" type="text" placeholder="Search" aria-label="Search"/>
           <button className="btn btn-outline-success my-2 my-sm-0 mx-md-2" type="submit">Search</button>
         </form>
 

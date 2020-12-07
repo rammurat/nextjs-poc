@@ -8,9 +8,9 @@ handler.use(middleware);
 handler.get(async (req, res) => {
   try {
     const {
-      query: { pid },
+      query: { text },
     } = req
-    const _query =  { $text: { $search: pid } }
+    const _query =  { $text: { $search: text } }
     const collection = await req.db.collection('products')
     const result = await searchDocumentsWhere(collection, _query)
 
@@ -23,8 +23,8 @@ handler.get(async (req, res) => {
 
 handler.post(async (req, res) => {
   try {
-    const {search} = req.body
-    const _query =  { $text: { $search: search } }
+    const {text} = req.body
+    const _query =  { $text: { $search: text } }
     const collection = await req.db.collection('products')
     const result = await searchDocumentsWhere(collection, _query)
 

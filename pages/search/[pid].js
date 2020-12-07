@@ -34,9 +34,13 @@ function PSP({data, nav}) {
 }
 
 // This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/products`)
+export async function getServerSideProps(context) {
+   // Fetch data from external API
+   const {
+    query: { pid },
+  } = context
+
+  const res = await fetch(`http://localhost:3000/api/search?text=${pid}`)
   const data = await res.json()
   const nav = await getNavMenuData()
 

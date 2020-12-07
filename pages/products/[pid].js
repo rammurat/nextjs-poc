@@ -8,10 +8,6 @@ function PSP({data, nav}) {
     <Layout {...nav}>
       <div className="row flex-xl-nowrap">
         <main role="main" className="psp-main-content ">
-            <h1>
-              Products
-            </h1>
-
             <div className="card-group">
               {data && data.length ? data.map((item, i) => (
                   <a key={i} href={`/products/${item.sub_cat_name}/${item.id}`}>

@@ -1,16 +1,13 @@
 import fetch from 'isomorphic-unfetch'
-import Layout from '../components/layout'
+import Layout from '../../components/layout'
 
-import {getNavMenuData} from '../services/apis'
+import {getNavMenuData} from '../../services/apis'
 
 function PSP({data, nav}) {
   return (
     <Layout {...nav}>
       <div className="row flex-xl-nowrap">
         <main role="main" className="container psp-main-content">
-          <h1>
-            Products
-          </h1>
           <div className="card-group"> 
             {data && data.length ? data.map((item, i) => (
                 <a key={i} href={`/products/${item.sub_cat_name}/${item.id}`}>
@@ -38,9 +35,12 @@ function PSP({data, nav}) {
 
 // This gets called on every request
 export async function getServerSideProps(context) {
-  // Fetch data from external API
-  const pid = context.query.pid
-  const res = await fetch(`http://localhost:3000/search?pid=${pid}`)
+   // Fetch data from external API
+   const {
+    query: { pid },
+  } = context
+
+  const res = await fetch(`http://localhost:3000/api/search?text=${pid || ''}`)
   const data = await res.json()
   const nav = await getNavMenuData()
 

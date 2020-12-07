@@ -15,7 +15,7 @@ handler.get(async (req, res) => {
       // find sub category id to fetch the products
       var regex = new RegExp(["^", pid, "$"].join(""), "i");
       const query = {name: regex}
-      const collection = await req.db.collection('sub-categories')
+      const collection = await req.db.collection('sub_categories')
       const result = await findDocument(collection, query)
 
       // find products that belongs to the search sub categories

@@ -7,7 +7,7 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.get(async (req, res) => {
-    let collection = await req.db.collection('sub-categories')
+    let collection = await req.db.collection('sub_categories')
     const result = await findDocuments(collection)
     res.json(result);
 });

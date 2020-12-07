@@ -8,7 +8,7 @@ const findDocuments = async function(collection) {
 
 const aggregateLookup = async function(collection) {
     const _lookup = {
-        from: 'sub-categories',
+        from: 'sub_categories',
         localField: 'id',
         foreignField: 'cat_id',
         as: 'sub_cats'

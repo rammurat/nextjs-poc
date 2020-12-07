@@ -20,4 +20,8 @@ const findDocumentsWhere = async function(collection, query) {
     return collection.find(query).toArray();
 }
 
-export {findDocument, findDocuments, aggregateLookup, findDocumentsWhere}
+const searchDocumentsWhere = async function(collection, query) {
+    return collection.find(query).toArray();
+}
+
+export {findDocument, findDocuments, aggregateLookup, findDocumentsWhere, searchDocumentsWhere}
